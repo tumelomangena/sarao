@@ -96,7 +96,20 @@ nd_on = {'diode': 'coupler', 'on': opts.track_duration, 'off': 0., 'period': 0.}
 
 # antennas representation
 a = ["{0:03}".format(i) for i in range(65)] 
-ants = functions.str_insert(a, "m")
+ants = ["m{}".format(i) for i in a]
+band = ["l","u"]
+
+def sensor_format(band, ants):
+    sensors = []
+    for j in band:
+        sen = [["{}_dig_{}_band_adc_hpol_rf_power_in".format(i,j) for i in ants],
+        ["{}_dig_{}_band_adc_vpol_rf_power_in".format(i,j) for i in ants],
+        ["{}_dig_{}_band_rfcu_hpol_rf_power_in".format(i,j) for i in ants],
+        ["{}_dig_{}_band_rfcu_vpol_rf_power_in".format(i,j) for i in ants],
+        ["{}_ap_tiltmeter_read_error".format(i,j) for i in ants]]
+        sensors.append(sen)
+ 
+    return sensors
 
 # accessing sensor file
 with open("/home/kat/usersnfs/tumelo/sensors.json", "r") as read_file:
@@ -110,32 +123,27 @@ with open("/home/kat/usersnfs/tumelo/sensors.json", "r") as read_file:
 with verify_and_connect(opts) as kat:
 
 #=======================sensor information===================================
-   ants_s = []
-   for i in ants:
-       ant = functions.str_insert(ants_sensors, str(i))
-       ants_s.appened(ant)
-
     sleep(5)
 
     data_tfr = functions.get_sensor_data(kat.tfrmon, tfr_sensors)
-    data_sdp = functions.get_sensor_data(kat, sdp_sensors)
-    data_cbf = functions.get_sensor_data(kat, cbf_sensors)
+    #data_sdp = functions.get_sensor_data(kat, sdp_sensors)
+    #data_cbf = functions.get_sensor_data(kat, cbf_sensors)
     data_ants = functions.get_sensor_data(kat, ants_s)
 #    data_cbf = functions.get_sensor_data(kat.cbf, cbf_sensors)
 
     sleep(5)
 
     data_t = functions.format_sensors(data_tfr)
-    data_s = functions.format_sensors(data_sdp)
-    data_c = functions.format_sensors(data_cbf)
+    #data_s = functions.format_sensors(data_sdp)
+    #data_c = functions.format_sensors(data_cbf)
     data_a = functions.format_sensors(data_ants)
  #   data_c = functions.format_sensors(data_cbf)
     sleep(5)
 
     user_logger.info("Checking problematic device status system sensors ")
     functions.print_table(data_t)
-    functions.print_table(data_s)
-    functions.print_table(data_c)
+    #functions.print_table(data_s)
+    #functions.print_table(data_c)
     functions.print_table(data_a)
 
 
