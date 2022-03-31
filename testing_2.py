@@ -2,6 +2,7 @@
 # Observe a bandpass calibrator to establish some basic health
 # properties of the MeerKAT telescope.
 
+import itertools
 import numpy as np
 import time
 import functions 
@@ -100,14 +101,16 @@ ants = ["m{}".format(i) for i in a]
 band = ["l","u"]
 
 def sensor_format(band, ants):
-    sensors = []
+    sensors_lists = []
     for j in band:
         sen = [["{}_dig_{}_band_adc_hpol_rf_power_in".format(i,j) for i in ants],
         ["{}_dig_{}_band_adc_vpol_rf_power_in".format(i,j) for i in ants],
         ["{}_dig_{}_band_rfcu_hpol_rf_power_in".format(i,j) for i in ants],
         ["{}_dig_{}_band_rfcu_vpol_rf_power_in".format(i,j) for i in ants],
-        ["{}_ap_tiltmeter_read_error".format(i,j) for i in ants]]
-        sensors.append(sen)
+        ["{}_ap_tiltmeter_read_error".format(i) for i in ants]]
+        sensors_lists.append(sen)
+    sensors_l = list(itertools.chain(*sensors_lists))
+    sensors = list(itertools.chain(*sensors_l))
  
     return sensors
 
@@ -117,7 +120,7 @@ with open("/home/kat/usersnfs/tumelo/sensors.json", "r") as read_file:
     tfr_sensors = sensors['tfr_device_status']
     cbf_sensors = sensors['cbf_device_status']
     sdp_sensors = sensors['sdp_device_status']
-    ants_sensors = sensors['ants']
+    
 
 # Check options and build KAT configuration, connecting to proxies and devices
 with verify_and_connect(opts) as kat:
@@ -128,6 +131,7 @@ with verify_and_connect(opts) as kat:
     data_tfr = functions.get_sensor_data(kat.tfrmon, tfr_sensors)
     #data_sdp = functions.get_sensor_data(kat, sdp_sensors)
     #data_cbf = functions.get_sensor_data(kat, cbf_sensors)
+    ants_s = sensor_format(band, ants)
     data_ants = functions.get_sensor_data(kat, ants_s)
 #    data_cbf = functions.get_sensor_data(kat.cbf, cbf_sensors)
 
@@ -278,6 +282,11 @@ with verify_and_connect(opts) as kat:
         if not opts.random_phase:
             # Set last-phaseup script sensor on the subarray.
             session.sub.req.set_script_param('script-last-phaseup', kat.sb_id_code)
+        if not opts.dry_run:
+            session.get_precise_time_reading('wide_tied_array_channelised_voltage_0x',
+                                                 timeout=90)
+            session.get_precise_time_reading('wide_tied_array_channelised_voltage_0y',
+                                                 timeout=90)
 
         #=========================interferometric pointing======================================
         user_logger.info("Performing interferometric pointing tests")
