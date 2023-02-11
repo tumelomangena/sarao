@@ -133,13 +133,13 @@ with verify_and_connect(opts) as kat:
     #data_cbf = functions.get_sensor_data(kat, cbf_sensors)
     ants_s = sensor_format(band, ants)
     data_ants = functions.get_sensor_data(kat, ants_s)
-#    data_cbf = functions.get_sensor_data(kat.cbf, cbf_sensors)
+    data_cbf = functions.get_sensor_data(kat.cbf, cbf_sensors)
 
     sleep(5)
 
     data_t = functions.format_sensors(data_tfr)
     #data_s = functions.format_sensors(data_sdp)
-    #data_c = functions.format_sensors(data_cbf)
+    data_c = functions.format_sensors(data_cbf)
     data_a = functions.format_sensors(data_ants)
  #   data_c = functions.format_sensors(data_cbf)
     sleep(5)
@@ -147,7 +147,7 @@ with verify_and_connect(opts) as kat:
     user_logger.info("Checking problematic device status system sensors ")
     functions.print_table(data_t)
     #functions.print_table(data_s)
-    #functions.print_table(data_c)
+    functions.print_table(data_c)
     functions.print_table(data_a)
 
 
