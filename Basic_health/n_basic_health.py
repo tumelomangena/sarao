@@ -11,13 +11,6 @@ import scipy.ndimage
 from katcorelib.observe import (standard_script_options, verify_and_connect,
                                 collect_targets, start_session, user_logger, SessionSDP, CalSolutionsUnavailable)
 
-#from scikits.fitting import ScatterFit, GaussianFit
-#from katpoint import (rad2deg, deg2rad, lightspeed, wrap_angle,
-#                      RefractionCorrection)
-
-
-
-
 
 # Group the frequency channels into this many sections to obtain pointing fits
 NUM_CHUNKS = 16
@@ -33,7 +26,6 @@ usage = "%prog [options] <'target/catalogue'> [<'target/catalogue'> ...]"
 description = 'Observe a bandpass calibrator to establish some ' \
               'basic health properties of the MeerKAT system.'
 parser = standard_script_options(usage, description)
-# Add experiment-specific options
 parser.add_option('--verify-duration', type='float', default=64.0,
                   help='Length of time to revisit source for verification, '
                        'in seconds (default=%default)')
@@ -49,8 +41,6 @@ parser.add_option('--reset-delays', action='store_true', default=False,
 parser.add_option('--reconfigure-sdp', action="store_true", default=False,
                   help='Reconfigure SDP subsystem at the start to clear '
                        'crashed containers or to load a new version of SDP')
-#parser.add_option('-t', '--track-duration', type='float', default=16.0,
-#                  help='Duration of each offset pointing, in seconds (default=%default)')
 parser.add_option('--max-extent', type='float', default=1.0,
                   help='Maximum distance of offset from target, in degrees')
 parser.add_option('--pointings', type='int', default=10,
