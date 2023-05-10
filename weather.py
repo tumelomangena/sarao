@@ -49,11 +49,11 @@ with verify_and_connect(opts) as kat:
         wind = ["gust_wind_speed", "mean_wind_speed"]
         weather = get_sensor_data(kat.anc, wind)
         w = weather["gust_wind_speed"]
-        sleep(2)
+        sleep(1)
         weather1 = get_sensor_data(kat.anc, wind)
         w1 = weather1["gust_wind_speed"]
         if w1 == w:
-            user_logger.warning("The wind sensor is faulty." )
+            user_logger.warning("The wind sensor might be faulty, please check the weather plot" )
             print("First value is {}".format(w))
             print("Second value is {}".format(w1))
         else:
