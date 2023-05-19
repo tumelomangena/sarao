@@ -225,7 +225,7 @@ services:
     restart: always
     container_name: api
     ports:
-      - 4321:4321
+      - 8000:8000
     environment:
       - ELASTICSEARCH_HOSTS=https://es01:9200
       - ELASTICSEARCH_USERNAME=elastic
