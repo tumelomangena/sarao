@@ -18,7 +18,7 @@ NUM_CHUNKS = 16
 
 #=====================================subsystem sensors===========================================
 def get_sensor_data(proxy, sensors):
-    """Returns sensor-status pairs for a given proxy and sensor list"""
+    """Returns sensor-status pairs for a given proxy and list of sensors"""
     sensor_data = {}
     for sen in sensors:
         try:

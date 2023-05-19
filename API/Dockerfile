@@ -10,6 +10,6 @@ RUN apt install -y python3-pip
 RUN python3 -m pip install fastapi 
 RUN python3 -m pip install uvicorn
 COPY . .
-CMD ["python3", "main.py"]
-#CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+#CMD ["python3", "main.py"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 EXPOSE 4321

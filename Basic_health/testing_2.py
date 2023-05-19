@@ -14,13 +14,6 @@ from time import sleep
 from katcorelib.observe import (standard_script_options, verify_and_connect,
                                 collect_targets, start_session, user_logger, SessionSDP, CalSolutionsUnavailable)
 
-#from scikits.fitting import ScatterFit, GaussianFit
-#from katpoint import (rad2deg, deg2rad, lightspeed, wrap_angle,
-#                      RefractionCorrection)
-
-
-
-
 
 # Group the frequency channels into this many sections to obtain pointing fits
 NUM_CHUNKS = 16
@@ -52,8 +45,6 @@ parser.add_option('--reset-delays', action='store_true', default=False,
 parser.add_option('--reconfigure-sdp', action="store_true", default=False,
                   help='Reconfigure SDP subsystem at the start to clear '
                        'crashed containers or to load a new version of SDP')
-#parser.add_option('-t', '--track-duration', type='float', default=16.0,
-#                  help='Duration of each offset pointing, in seconds (default=%default)')
 parser.add_option('--max-extent', type='float', default=1.0,
                   help='Maximum distance of offset from target, in degrees')
 parser.add_option('--pointings', type='int', default=10,
@@ -133,13 +124,13 @@ with verify_and_connect(opts) as kat:
     #data_cbf = functions.get_sensor_data(kat, cbf_sensors)
     ants_s = sensor_format(band, ants)
     data_ants = functions.get_sensor_data(kat, ants_s)
-    data_cbf = functions.get_sensor_data(kat.cbf, cbf_sensors)
+    #data_cbf = functions.get_sensor_data(kat.cbf, cbf_sensors)
 
     sleep(5)
 
     data_t = functions.format_sensors(data_tfr)
     #data_s = functions.format_sensors(data_sdp)
-    data_c = functions.format_sensors(data_cbf)
+    #data_c = functions.format_sensors(data_cbf)
     data_a = functions.format_sensors(data_ants)
  #   data_c = functions.format_sensors(data_cbf)
     sleep(5)
@@ -147,7 +138,7 @@ with verify_and_connect(opts) as kat:
     user_logger.info("Checking problematic device status system sensors ")
     functions.print_table(data_t)
     #functions.print_table(data_s)
-    functions.print_table(data_c)
+    #functions.print_table(data_c)
     functions.print_table(data_a)
 
 
