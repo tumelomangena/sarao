@@ -17,7 +17,7 @@ STEP 2: Run the following command on the terminal in-order to build containers.
 
 STEP 3: Go to the following API address to access elasticseach content:
 
-```https://localhost:9200/books```
+```https://localhost:4321/books```
 
 
 username: elastic
