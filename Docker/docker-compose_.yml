@@ -1,0 +1,68 @@
+
+
+
+version: '3'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
+    container_name: elasticsearch_paws
+    volumes:
+      - certs:/usr/share/elasticsearch/config/certs
+      - /usr/share/elasticsearch/data
+      - /var/backups/elastic
+      - /var/kat/paws
+    environment:
+      - 'path.repo=/var/backups/elastic'
+      - 'path.logs=/var/kat/paws'
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.authc.token.enabled=false
+      - ELASTIC_PASSWORD=$ELASTIC_PASSWORD
+
+      # - xpack.security.http.ssl.enabled=false
+      # - xpack.security.http.ssl.key=certs/elasticsearch/elasticsearch.key
+      # - xpack.security.http.ssl.certificate=certs/elasticsearch/elasticsearch.crt
+      # - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
+
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "8200:9200"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.7.1
+    container_name: kibana_paws
+    depends_on:
+      - elasticsearch
+    environment:
+      - SERVER_NAME=kibana
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - LOGGING_QUIET=true
+      - SERVER_PUBLICBASEURL=http://localhost:6601
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+      - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=config/certs/ca.crt
+    ports:
+      - "6601:5601"
+
+  # ngserve:
+  #   build:
+  #     context: .
+  #     dockerfile: katpaws-ng/Dockerfile-dev
+  #   ports:
+  #     - "4300:4200"
+  #   volumes:
+  #     - ./katpaws-ng/katpaws/src:/ng-app/src
+  #     - ./katpaws-ng/katpaws/e2e:/ng-app/e2e
+  #   container_name: ngserve_paws
+
+volumes:
+  data1:
+  certs:
+    driver: local
