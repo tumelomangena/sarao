@@ -1,6 +1,6 @@
-##Innovation sprint project - Software Design Patterns
+## Innovation sprint project - Software Design Patterns
 
-##JavaScript design patterns
+## JavaScript design patterns
 
 Design patterns are reusable templates that capture best practices for addressing common software design challenges. They provide a systematic approach to software design, fostering modularity, flexibility, and maintainability in code.
 
