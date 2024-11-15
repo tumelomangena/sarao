@@ -1,0 +1,88 @@
+.background-container {
+    position:inherit;
+    width: 100%;
+    height: 30vh;
+    background-image: url('../../../image.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: animateBackground 2s infinite;
+  }
+
+.image-container {
+    position:inherit;
+    width: 50%;
+    height: 30vh;
+    background-image: url('../../../mkat.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next row */
+    justify-content: center; /* Center items along the main axis */
+    gap: 20px; /* Add spacing between grid items */
+    padding: 20px; /* Add padding around the grid */
+    height: 30vh;
+    width: 50;
+}
+
+.grid-item {
+    flex: 1 0 30%; /* Each item takes up 30% of the container width with some flexibility */
+    max-width: 300px; /* Set a maximum width for each grid item */
+    text-align: center;
+    margin-bottom: 20px;  /* Center text inside each grid item */
+}
+
+.large-button {
+  padding: 15px 30px;
+  justify-content: center;
+  font-size: 25px;
+  opacity: 0; /* Initially hide the buttons */
+  transition: transform 0.2s ease;
+  animation: fadeIn 1.5s ease-in-out forwards; /* Apply the fadeIn animation */
+}
+
+.large-button:hover {
+  transform: scale(1.3); /* Scale the button to 110% on hover */
+}
+
+.large-button:hover {
+  transform: scale(1.1); /* Scale the button on hover */
+}
+  
+@keyframes animateBackground {
+    50% { background-position: 0% 50%; }
+    70% { background-position: 100% 50%; }
+    100% { background-position: 20% 50%; }
+  }
+  
+
+@keyframes fadeIn {
+    20% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+
+/* Media query for tablets (768px and above) */
+@media screen and (min-width: 768px) {
+  .grid-item {
+      flex: 1 0 48%; /* Each item takes up 48% of the container width */
+  }
+}
+
+/* Media query for desktops (1024px and above) */
+@media screen and (min-width: 1024px) {
+  .grid-item {
+      flex: 1 0 30%; /* Each item takes up 30% of the container width */
+  }
+}
+
