@@ -1,13 +1,12 @@
-##READme for the Innovation sprint project Software Design Patterns
+##Innovation sprint project - Software Design Patterns
 
-#JavaScript design patterns
+##JavaScript design patterns
 
 Design patterns are reusable templates that capture best practices for addressing common software design challenges. They provide a systematic approach to software design, fostering modularity, flexibility, and maintainability in code.
 
 **Types of design patterns**
 
-- Creational - Creational patterns center on object creation methods, offering flexible and controlled approaches for instantiating objects.
-
+1. **Creational** - Creational patterns center on object creation methods, offering flexible and controlled approaches for instantiating objects.
 - Singleton - The Singleton Pattern guarantees that a class has a single instance and offers a global access point to that instance.
 - Factory - The Factory Pattern enables object creation without defining specific classes, encapsulating the creation logic in a separate factory method. This allows for flexibility and decouples the creator from the objects it creates.
 - Constructor - The Constructor Pattern creates objects using a constructor function with the `new` keyword, allowing object properties to be defined and initialized within the constructor function.
@@ -16,7 +15,7 @@ Design patterns are reusable templates that capture best practices for addressin
 - Module - The Module Pattern groups related methods and properties into a single module, offering a clean structure for organizing and safeguarding code. It supports private and public members, promoting information hiding and reducing global namespace pollution.
 
 
-- Structural - Structural patterns are concerned with organizing and combining objects to create larger, cohesive structures. They define relationships between objects and offer flexible methods for managing and modifying these structures.
+2. **Structural** - Structural patterns are concerned with organizing and combining objects to create larger, cohesive structures. They define relationships between objects and offer flexible methods for managing and modifying these structures.
 
 - Decorator Pattern
 - Facade Pattern
@@ -25,7 +24,7 @@ Design patterns are reusable templates that capture best practices for addressin
 - Composite
 
 
-- Behavioral - Behavioral patterns emphasize interactions between objects and the allocation of responsibilities. They offer solutions for effective communication, coordination, and collaboration among objects.
+3. **Behavioral** - Behavioral patterns emphasize interactions between objects and the allocation of responsibilities. They offer solutions for effective communication, coordination, and collaboration among objects.
 
 - Observer Pattern
 - Strategy Pattern
