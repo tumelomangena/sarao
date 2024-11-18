@@ -52,3 +52,10 @@ Inversion of control (IoC) - is a principle (not a design pattern) focusing on i
     - Mediator Pattern
 
 
+
+***Library Concept***
+
+Example:
+- **Code Splitting**: The import() function allows the application to load only the necessary code for each section, which optimizes performance.
+- **Modularization**: The logic for each section (header, footer, etc.) is neatly encapsulated in separate files, making the codebase more maintainable.
+- **Dynamic Content Injection**: New content can be dynamically added to the HTML body without needing to refresh the page or reload the entire application.
