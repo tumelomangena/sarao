@@ -32,9 +32,4 @@ const shoppingCart = (() => {
     };
   })();
   
-  // Demo
-  shoppingCart.addItem({ name: 'Apple', price: 4.50 });
-  shoppingCart.addItem({ name: 'Banana', price: 3.99 });
-  shoppingCart.addItem({ name: 'Orange', price: 3.00 });
-  shoppingCart.checkout();
   

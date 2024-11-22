@@ -38,9 +38,3 @@ class CartService {
     };
   })(new CartService());  // Injecting the CartService dependency
   
-  // Demo usage
-  shoppingCart.addItem({ name: 'Apple', price: 1.50 });
-  shoppingCart.addItem({ name: 'Banana', price: 0.99 });
-  shoppingCart.addItem({ name: 'Orange', price: 2.00 });
-  shoppingCart.checkout();
-  
