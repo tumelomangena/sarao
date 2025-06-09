@@ -22,7 +22,6 @@ class CartService {
     }
   }
   
-  // ShoppingCart - Uses the CartService to perform actions
   const shoppingCart = ((cartService) => {
     // Public API: exposing methods that interact with CartService
     return {
@@ -37,4 +36,8 @@ class CartService {
       }
     };
   })(new CartService());  // Injecting the CartService dependency
-  
+
+shoppingCart.addItme({name: 'Apples', price: 30})
+shoppingCart.addItme({name: 'Banana', price: 20})
+shoppingCart.addItme({name: 'Grape', price: 50})
+shoppingCart.checkout()
